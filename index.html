@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root{
+    --page:#0a0710;
+    --frame:#140f1c;
+    --panel:#1b1526;
+    --panel-2:#221a2e;
+    --line:rgba(255,255,255,0.07);
+    --text:#f3eef7;
+    --text-dim:#9d93ab;
+    --text-faint:#6f6580;
+    --grad1:#8b5cf6;
+    --grad2:#ec4899;
+    --grad: linear-gradient(135deg, var(--grad1), var(--grad2));
+    --grad-soft: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(236,72,153,0.14));
+    --jampp:#3fd8c7;
+    --jampp-soft:rgba(63,216,199,0.12);
+    --youappi:#f0a468;
+    --youappi-soft:rgba(240,164,104,0.12);
+    --backlog:#9d93ab;
+    --working:#f0c96a;
+    --open:#f0708a;
+    --sans:"IBM Plex Sans","Inter",system-ui,-apple-system,sans-serif;
+    --mono:"SF Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--page);font-family:var(--sans);color:var(--text);
+    -webkit-font-smoothing:antialiased;padding:28px 16px;
+  }
+  .app{
+    max-width:1180px;margin:0 auto;
+    background:
+      radial-gradient(ellipse 700px 420px at 8% 0%, rgba(139,92,246,0.22), transparent 60%),
+      radial-gradient(ellipse 620px 420px at 92% 8%, rgba(236,72,153,0.16), transparent 60%),
+      var(--frame);
+    border-radius:22px;border:1px solid var(--line);
+    display:flex;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  .sidebar{width:230px;flex-shrink:0;padding:26px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;margin-bottom:30px;padding:0 6px;}
+  .brand .mark{
+    width:26px;height:26px;border-radius:8px;background:var(--grad);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  nav{display:flex;flex-direction:column;gap:3px;}
+  .nav-item{
+    display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:11px;
+    font-size:13.5px;color:var(--text-dim);cursor:pointer;transition:background .15s;
+    user-select:none;
+  }
+  .nav-item:hover{background:var(--panel-2);}
+  .nav-item.active{background:var(--grad);color:#fff;font-weight:600;}
+  .nav-item .ic{width:16px;text-align:center;opacity:.9;}
+  .nav-spacer{flex:1;}
+  .nav-bottom{border-top:1px solid var(--line);padding-top:12px;margin-top:12px;}
+  .main{flex:1;padding:28px 32px;min-width:0;}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
+  .topbar h1{font-size:24px;margin:0 0 4px;font-weight:700;letter-spacing:-0.01em;}
+  .topbar .subtitle{font-size:13px;color:var(--text-dim);}
+  .top-icons{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    width:38px;height:38px;border-radius:50%;background:var(--panel-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px;
+  }
+  .sync-pill{
+    display:flex;align-items:center;gap:7px;background:var(--panel-2);border:1px solid var(--line);
+    padding:8px 14px;border-radius:999px;font-size:12px;color:var(--text-dim);font-family:var(--mono);
+  }
+  .sync-pill .dot{width:6px;height:6px;border-radius:50%;background:#5ee6a0;box-shadow:0 0 0 3px rgba(94,230,160,0.18);}
+  .stat-row{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-bottom:18px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+  .card-title{font-size:14px;font-weight:600;color:var(--text);}
+  .stat-card .stat-tag{
+    font-size:11px;font-family:var(--mono);padding:5px 12px;border-radius:999px;background:var(--grad-soft);color:#e9d9ff;
+  }
+  .stat-card .big{font-size:32px;font-weight:700;margin-top:2px;}
+  .stat-card .big.jampp{color:var(--jampp);}
+  .stat-card .big.youappi{color:var(--youappi);}
+  .stat-card .sub{font-size:12px;color:var(--text-dim);margin-top:4px;}
+  .cta-card{background:linear-gradient(135deg, rgba(139,92,246,0.14), rgba(236,72,153,0.10)), var(--panel);}
+  .cta-card p{font-size:12.5px;color:var(--text-dim);margin:0 0 16px;line-height:1.5;}
+  .cta-btn{
+    display:inline-block;background:var(--grad);color:#fff;border:none;border-radius:999px;
+    padding:9px 18px;font-size:12.5px;font-weight:600;font-family:var(--mono);
+  }
+  .split{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;}
+  .list-card{padding:18px 10px 10px 20px;}
+  .list-card .card-head{padding-right:14px;}
+  .filter-tabs{display:flex;gap:6px;}
+  .filter-tab{
+    font-size:11.5px;padding:5px 11px;border-radius:999px;background:var(--panel-2);color:var(--text-dim);
+    font-family:var(--mono);cursor:pointer;
+  }
+  .filter-tab.active{background:var(--grad);color:#fff;}
+  .ticket-list{max-height:340px;overflow-y:auto;padding-right:10px;}
+  .ticket-row{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 4px;border-bottom:1px solid var(--line);
+  }
+  .ticket-row:last-child{border-bottom:none;}
+  .ticket-left{display:flex;align-items:center;gap:12px;min-width:0;}
+  .co-dot{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;}
+  .co-dot.jampp{background:var(--jampp-soft);color:var(--jampp);}
+  .co-dot.youappi{background:var(--youappi-soft);color:var(--youappi);}
+  .ticket-text{min-width:0;}
+  .ticket-text .name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;}
+  .ticket-text .key{font-size:11px;color:var(--text-faint);font-family:var(--mono);margin-top:2px;}
+  .status-chip{
+    font-size:10.5px;font-family:var(--mono);padding:4px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0;
+  }
+  .status-chip.Backlog{background:rgba(157,147,171,0.16);color:var(--backlog);}
+  .status-chip.WorkingOn{background:rgba(240,201,106,0.16);color:var(--working);}
+  .status-chip.Open{background:rgba(240,112,138,0.16);color:var(--open);}
+  .status-chip.NeedFeedback{background:rgba(240,201,106,0.16);color:var(--working);}
+  .status-chip.InTesting{background:rgba(63,216,199,0.16);color:var(--jampp);}
+  .status-chip.Finalizada,.status-chip.Closed{background:rgba(94,230,160,0.14);color:#5ee6a0;}
+  .empty-row{padding:34px 10px;text-align:center;color:var(--text-faint);font-size:13px;font-style:italic;}
+  .summary-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .tile{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:16px;}
+  .tile .co-name{font-size:11px;font-family:var(--mono);color:var(--text-dim);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .tile .co-name .sw{width:8px;height:8px;border-radius:50%;}
+  .tile .co-name .sw.jampp{background:var(--jampp);}
+  .tile .co-name .sw.youappi{background:var(--youappi);}
+  .tile .n{font-size:22px;font-weight:700;}
+  .tile .l{font-size:11px;color:var(--text-faint);margin-top:2px;}
+  .section-title{font-size:11px;font-family:var(--mono);color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px;}
+  ::-webkit-scrollbar{width:6px;}
+  ::-webkit-scrollbar-thumb{background:var(--panel-2);border-radius:6px;}
+  .view{display:none;}
+  .view.active{display:block;}
+  @media (max-width:820px){
+    .app{flex-direction:column;}
+    .sidebar{width:100%;flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--line);}
+    nav{flex-direction:row;}
+    .nav-spacer,.nav-bottom{display:none;}
+    .stat-row,.split{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <div class="brand"><span class="mark">AC</span> Ayelen Caraballo</div>
+    <nav>
+      <div class="nav-item active" data-view="hoy"><span class="ic">◷</span> Tareas de hoy</div>
+      <div class="nav-item" data-view="historial"><span class="ic">◫</span> Tareas anteriores</div>
+    </nav>
+    <div class="nav-spacer"></div>
+    <div class="nav-bottom">
+      <div class="nav-item" style="opacity:.55;cursor:default;"><span class="ic">⚙</span> Ajustes</div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <h1>Resumen de tickets</h1>
+        <div class="subtitle" id="dayLine">cargando…</div>
+      </div>
+      <div class="top-icons">
+        <div class="sync-pill"><span class="dot"></span><span id="lastUpdated">—</span></div>
+      </div>
+    </div>
+    <!-- ===== VISTA: HOY ===== -->
+    <div class="view active" id="view-hoy">
+      <div class="stat-row">
+        <div class="card stat-card">
+          <div class="card-head">
+            <div class="card-title">Activos hoy</div>
+            <div class="stat-tag">EN VIVO</div>
+          </div>
+          <div class="big" id="hoyTotal">0</div>
+          <div class="sub">tickets requieren tu atención ahora</div>
+        </div>
+        <div class="card cta-card">
+          <div class="card-title" style="margin-bottom:8px;">Sincronización automática</div>
+          <p>Este panel se actualiza cada 2 horas en horario laboral, de 9 a 19, de lunes a viernes.</p>
+          <span class="cta-btn">CADA 2H · 9–19 · LUN–VIE</span>
+        </div>
+      </div>
+      <div class="split">
+        <div class="card list-card">
+          <div class="card-head">
+            <div class="card-title">Tickets de hoy</div>
+            <div class="filter-tabs">
+              <div class="filter-tab active" data-filter="all">Todos</div>
+              <div class="filter-tab" data-filter="jampp">Jampp</div>
+              <div class="filter-tab" data-filter="youappi">YouAppi</div>
+            </div>
+          </div>
+          <div class="ticket-list" id="hoyList"></div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:14px;">Por empresa</div>
+          <div class="summary-tiles">
+            <div class="tile">
+              <div class="co-name"><span class="sw jampp"></span>JAMPP</div>
+              <div class="n" id="jamppHoyN">0</div>
+              <div class="l">Backlog + Working On</div>
+            </div>
+            <div class="tile">
+              <div class="co-name"><span class="sw youappi"></span>YOUAPPI</div>
+              <div class="n" id="youappiHoyN">0</div>
+              <div class="l">Open</div>
+            </div>
+          </div>
+          <div class="section-title">Fuente</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.7;">
+            Jampp → Jira (proyecto CO)<br>YouAppi → Mesa de ayuda (help.youappi.com)
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===== VISTA: HISTORIAL ===== -->
+    <div class="view" id="view-historial">
+      <div class="stat-row">
+        <div class="card stat-card">
+          <div class="card-head">
+            <div class="card-title">Acumulado reciente</div>
+            <div class="stat-tag">HISTORIAL</div>
+          </div>
+          <div class="big" id="histTotal">0</div>
+          <div class="sub">tickets trabajados, por empresa y estado</div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:14px;">Por empresa</div>
+          <div class="summary-tiles">
+            <div class="tile">
+              <div class="co-name"><span class="sw jampp"></span>JAMPP</div>
+              <div class="n" id="jamppHistN">0</div>
+              <div class="l">tickets en el período</div>
+            </div>
+            <div class="tile">
+              <div class="co-name"><span class="sw youappi"></span>YOUAPPI</div>
+              <div class="n" id="youappiHistN">0</div>
+              <div class="l">tickets en el período</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card list-card">
+        <div class="card-head">
+          <div class="card-title">Historial de tickets</div>
+          <div class="filter-tabs">
+            <div class="filter-tab active" data-hfilter="all">Todos</div>
+            <div class="filter-tab" data-hfilter="jampp">Jampp</div>
+            <div class="filter-tab" data-hfilter="youappi">YouAppi</div>
+          </div>
+        </div>
+        <div class="ticket-list" id="histList" style="max-height:460px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// Estos dos objetos son reescritos por la tarea programada "tareas-del-dia-snapshot"
+// en cada corrida (cada 2h, 9-19, lun-vie). No usan almacenamiento de navegador:
+// el archivo HTML completo se regenera con los datos nuevos embebidos acá.
+const initialToday = {
+  generatedAt: "2026-07-21T17:10:00-03:00",
+  jampp: { tickets: [] },
+  youappi: { tickets: [] }
+};
+const initialHistory = {
+  generatedAt: "2026-07-21T17:10:00-03:00",
+  jampp: { tickets: [] },
+  youappi: { tickets: [] }
+};
+
+function statusClass(s){ return s.replace(/\s+/g,''); }
+function initials(company){ return company === "jampp" ? "JP" : "YA"; }
+
+function escapeHtml(s){
+  return String(s || "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+function renderTicketRow(company, t){
+  const div = document.createElement("div");
+  div.className = "ticket-row";
+  div.dataset.company = company;
+  const key = escapeHtml(t.key);
+  const summary = escapeHtml(t.summary);
+  const status = escapeHtml(t.status);
+  const inner = `
+    <div class="ticket-left">
+      <div class="co-dot ${company}">${initials(company)}</div>
+      <div class="ticket-text">
+        <div class="name">${summary}</div>
+        <div class="key">${key}</div>
+      </div>
+    </div>
+    <span class="status-chip ${statusClass(t.status)}">${status}</span>
+  `;
+  if (t.url) {
+    div.innerHTML = inner;
+    div.style.cursor = "pointer";
+    div.addEventListener("click", () => window.open(t.url, "_blank", "noopener"));
+  } else {
+    div.innerHTML = inner;
+  }
+  return div;
+}
+
+function renderList(container, jamppTickets, youappiTickets, emptyText){
+  container.innerHTML = "";
+  const all = [
+    ...jamppTickets.map(t => ({company:"jampp", t})),
+    ...youappiTickets.map(t => ({company:"youappi", t}))
+  ];
+  if (all.length === 0){
+    const div = document.createElement("div");
+    div.className = "empty-row";
+    div.textContent = emptyText;
+    container.appendChild(div);
+  } else {
+    all.forEach(({company, t}) => container.appendChild(renderTicketRow(company, t)));
+  }
+}
+
+function setupFilters(selector, attr, listEl){
+  document.querySelectorAll(selector).forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(selector).forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const f = tab.dataset[attr];
+      listEl.querySelectorAll(".ticket-row").forEach(row => {
+        row.style.display = (f === "all" || row.dataset.company === f) ? "" : "none";
+      });
+    });
+  });
+}
+
+function renderToday(data){
+  renderList(document.getElementById("hoyList"), data.jampp.tickets, data.youappi.tickets, "Sin tickets activos ahora.");
+  document.getElementById("jamppHoyN").textContent = data.jampp.tickets.length;
+  document.getElementById("youappiHoyN").textContent = data.youappi.tickets.length;
+  document.getElementById("hoyTotal").textContent = data.jampp.tickets.length + data.youappi.tickets.length;
+  const gen = new Date(data.generatedAt);
+  document.getElementById("lastUpdated").textContent =
+    gen.toLocaleString("es-AR", {dateStyle:"medium", timeStyle:"short"});
+  document.getElementById("dayLine").textContent =
+    gen.toLocaleDateString("es-AR", {weekday:"long", day:"numeric", month:"long"});
+}
+
+function renderHistory(data){
+  renderList(document.getElementById("histList"), data.jampp.tickets, data.youappi.tickets, "Todavía no hay historial cargado.");
+  document.getElementById("jamppHistN").textContent = data.jampp.tickets.length;
+  document.getElementById("youappiHistN").textContent = data.youappi.tickets.length;
+  document.getElementById("histTotal").textContent = data.jampp.tickets.length + data.youappi.tickets.length;
+}
+
+document.querySelectorAll(".nav-item[data-view]").forEach(item => {
+  item.addEventListener("click", () => {
+    document.querySelectorAll(".nav-item[data-view]").forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+    const v = item.dataset.view;
+    document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
+    document.getElementById("view-" + v).classList.add("active");
+  });
+});
+
+renderToday(initialToday);
+renderHistory(initialHistory);
+setupFilters("#view-hoy .filter-tab", "filter", document.getElementById("hoyList"));
+setupFilters("#view-historial .filter-tab", "hfilter", document.getElementById("histList"));
+</script>
+</body>
+</html>
