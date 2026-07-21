@@ -130,6 +130,11 @@
   .tile .n{font-size:22px;font-weight:700;}
   .tile .l{font-size:11px;color:var(--text-faint);margin-top:2px;}
   .section-title{font-size:11px;font-family:var(--mono);color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px;}
+  .meeting-row{display:flex;align-items:center;gap:14px;padding:11px 4px;border-bottom:1px solid var(--line);}
+  .meeting-row:last-child{border-bottom:none;}
+  .meeting-time{font-family:var(--mono);font-size:12px;color:var(--text-dim);flex-shrink:0;width:118px;}
+  .meeting-title{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .meeting-dot{width:6px;height:6px;border-radius:50%;background:var(--grad1);flex-shrink:0;}
   ::-webkit-scrollbar{width:6px;}
   ::-webkit-scrollbar-thumb{background:var(--panel-2);border-radius:6px;}
   .view{display:none;}
@@ -215,6 +220,12 @@
           </div>
         </div>
       </div>
+      <div class="card list-card" style="margin-top:16px;">
+        <div class="card-head">
+          <div class="card-title">Reuniones de hoy</div>
+        </div>
+        <div class="ticket-list" id="meetingsList" style="max-height:260px;"></div>
+      </div>
     </div>
     <!-- ===== VISTA: HISTORIAL ===== -->
     <div class="view" id="view-historial">
@@ -270,6 +281,14 @@ const initialHistory = {
   generatedAt: "2026-07-21T17:10:00-03:00",
   jampp: { tickets: [] },
   youappi: { tickets: [] }
+};
+// Reuniones de hoy desde Google Calendar. Solo título + horario (sin invitados),
+// porque este sitio es público. Se reescribe en cada corrida de la tarea programada.
+const initialMeetings = {
+  generatedAt: "2026-07-21T17:33:00-03:00",
+  events: [
+    { time: "10:10 – 10:55", title: "Daily Creatives" }
+  ]
 };
 
 function statusClass(s){ return s.replace(/\s+/g,''); }
@@ -349,6 +368,28 @@ function renderToday(data){
     gen.toLocaleDateString("es-AR", {weekday:"long", day:"numeric", month:"long"});
 }
 
+function renderMeetings(data){
+  const container = document.getElementById("meetingsList");
+  container.innerHTML = "";
+  if (!data.events.length){
+    const div = document.createElement("div");
+    div.className = "empty-row";
+    div.textContent = "Sin reuniones agendadas para hoy.";
+    container.appendChild(div);
+    return;
+  }
+  data.events.forEach(ev => {
+    const row = document.createElement("div");
+    row.className = "meeting-row";
+    row.innerHTML = `
+      <span class="meeting-dot"></span>
+      <span class="meeting-time">${escapeHtml(ev.time)}</span>
+      <span class="meeting-title">${escapeHtml(ev.title)}</span>
+    `;
+    container.appendChild(row);
+  });
+}
+
 function renderHistory(data){
   renderList(document.getElementById("histList"), data.jampp.tickets, data.youappi.tickets, "Todavía no hay historial cargado.");
   document.getElementById("jamppHistN").textContent = data.jampp.tickets.length;
@@ -367,6 +408,7 @@ document.querySelectorAll(".nav-item[data-view]").forEach(item => {
 });
 
 renderToday(initialToday);
+renderMeetings(initialMeetings);
 renderHistory(initialHistory);
 setupFilters("#view-hoy .filter-tab", "filter", document.getElementById("hoyList"));
 setupFilters("#view-historial .filter-tab", "hfilter", document.getElementById("histList"));
