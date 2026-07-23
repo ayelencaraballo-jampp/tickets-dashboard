@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Dashboard Tickets",
+  "schemaVersion": 1,
+  "description": "Snapshot de tickets del día: Jira proyecto CO (Backlog/Working On) y help desk de YouAppi Creative Team (estado Open). Se actualiza cada 2 horas en horario laboral vía tarea programada."
+}
+</script>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -273,21 +279,65 @@
 // en cada corrida (cada 2h, 9-19, lun-vie). No usan almacenamiento de navegador:
 // el archivo HTML completo se regenera con los datos nuevos embebidos acá.
 const initialToday = {
-  generatedAt: "2026-07-21T17:10:00-03:00",
-  jampp: { tickets: [] },
+  generatedAt: "2026-07-23T10:55:23-03:00",
+  jampp: { tickets: [
+    { key: "CO-4305", status: "Working On", summary: "Novig - Short videos para CTV", url: "https://jampphq.atlassian.net/browse/CO-4305" }
+  ] },
   youappi: { tickets: [] }
 };
 const initialHistory = {
-  generatedAt: "2026-07-21T17:10:00-03:00",
-  jampp: { tickets: [] },
-  youappi: { tickets: [] }
+  generatedAt: "2026-07-23T09:23:03-03:00",
+  jampp: { tickets: [
+    { key: "CO-4173", status: "Finalizada", summary: "Creative Proposal (DPA) - Sportmaster", url: "https://jampphq.atlassian.net/browse/CO-4173" },
+    { key: "CO-4193", status: "Finalizada", summary: "McDonald's AR - World Cup Creatives", url: "https://jampphq.atlassian.net/browse/CO-4193" },
+    { key: "CO-4210", status: "Finalizada", summary: "Capcut: Create In-Banner Videos from Static Images", url: "https://jampphq.atlassian.net/browse/CO-4210" },
+    { key: "CO-4236", status: "Finalizada", summary: "[Capcut] Create In-Banner Videos from Static images", url: "https://jampphq.atlassian.net/browse/CO-4236" },
+    { key: "CO-4224", status: "Finalizada", summary: "e-Football Creative Resizes", url: "https://jampphq.atlassian.net/browse/CO-4224" },
+    { key: "CO-4242", status: "Finalizada", summary: "In Banners 320x50 - Magnit", url: "https://jampphq.atlassian.net/browse/CO-4242" },
+    { key: "CO-4195", status: "Finalizada", summary: "GoPuff -  Creatives CTV para Audiencia Hispana", url: "https://jampphq.atlassian.net/browse/CO-4195" },
+    { key: "CO-4168", status: "Finalizada", summary: "Telkomsel New launch Resize", url: "https://jampphq.atlassian.net/browse/CO-4168" },
+    { key: "CO-4183", status: "Finalizada", summary: "Sephora Brasil - Dia dos Namorados Creatives", url: "https://jampphq.atlassian.net/browse/CO-4183" },
+    { key: "CO-4178", status: "Finalizada", summary: "by.U Creative Resize - 5G [To launch tomorrow if possible]", url: "https://jampphq.atlassian.net/browse/CO-4178" },
+    { key: "CO-4211", status: "Finalizada", summary: "New In-Banner Video Creatives - Super Group", url: "https://jampphq.atlassian.net/browse/CO-4211" },
+    { key: "CO-4221", status: "Finalizada", summary: "McDonalds MX | Ads Mundial", url: "https://jampphq.atlassian.net/browse/CO-4221" },
+    { key: "CO-4214", status: "Finalizada", summary: "McD Video Edits (Launch Tomorrow)", url: "https://jampphq.atlassian.net/browse/CO-4214" },
+    { key: "CO-4192", status: "Finalizada", summary: "Small banner sized in banner video for Earnifi", url: "https://jampphq.atlassian.net/browse/CO-4192" },
+    { key: "CO-4134", status: "Finalizada", summary: "GoPuff Adaptar Creatives CTV para Audiencia Hispana", url: "https://jampphq.atlassian.net/browse/CO-4134" },
+    { key: "CO-4158", status: "Finalizada", summary: "Banner creatives request for CapCut", url: "https://jampphq.atlassian.net/browse/CO-4158" },
+    { key: "CO-4148", status: "Finalizada", summary: "Olipa Trading Card New launch resize", url: "https://jampphq.atlassian.net/browse/CO-4148" },
+    { key: "CO-4174", status: "Finalizada", summary: "McDonalds MX - L&F BIG FEST", url: "https://jampphq.atlassian.net/browse/CO-4174" },
+    { key: "CO-4137", status: "Finalizada", summary: "Native resize request - Betway Sports", url: "https://jampphq.atlassian.net/browse/CO-4137" },
+    { key: "CO-4167", status: "Finalizada", summary: "McDonalds Mexico - New Creatives x Mes de la Hamburguesa", url: "https://jampphq.atlassian.net/browse/CO-4167" },
+    { key: "CO-4153", status: "Finalizada", summary: "Sephora Brasil - Miu Miu Creatives", url: "https://jampphq.atlassian.net/browse/CO-4153" },
+    { key: "CO-4159", status: "Finalizada", summary: "Enjoei - Creative Resize Promo 5/5", url: "https://jampphq.atlassian.net/browse/CO-4159" },
+    { key: "CO-4139", status: "Finalizada", summary: "McDonalds - Ads Resizing Q2", url: "https://jampphq.atlassian.net/browse/CO-4139" },
+    { key: "CO-4141", status: "Finalizada", summary: "Resize McDonalds MX - Mundial 2026", url: "https://jampphq.atlassian.net/browse/CO-4141" },
+    { key: "CO-4154", status: "Finalizada", summary: "WorldWinner Adding CTA Button to Videos", url: "https://jampphq.atlassian.net/browse/CO-4154" },
+    { key: "CO-4118", status: "Finalizada", summary: "Sephora Brasil - Help with New Creatives", url: "https://jampphq.atlassian.net/browse/CO-4118" },
+    { key: "CO-4123", status: "Finalizada", summary: "Speak AI small banner resize", url: "https://jampphq.atlassian.net/browse/CO-4123" },
+    { key: "CO-4133", status: "Finalizada", summary: "Timee Resize Files", url: "https://jampphq.atlassian.net/browse/CO-4133" }
+  ] },
+  youappi: { tickets: [
+    { key: "#26681", status: "Closed", summary: "SBK- Mraid banner" },
+    { key: "#26684", status: "Closed", summary: "Banner Request: Snowprint - Warhammer 40,000: Tacticus" },
+    { key: "#26619", status: "Closed", summary: "playable for Caesar Casino" },
+    { key: "#26652", status: "Closed", summary: "CTV Creative Request : Chaos Drink sort" },
+    { key: "#26668", status: "Closed", summary: "Re: POPs playable creatives" },
+    { key: "#26645", status: "Closed", summary: "Fwd: Adventure Escape Mysteries | NCIS Story | July 2026" },
+    { key: "#26545", status: "Closed", summary: "CTV Creative Request : Chaos Drink sort" },
+    { key: "#26520", status: "Closed", summary: "Fwd: POPs Sweep coins" },
+    { key: "#26629", status: "Closed", summary: "New banners-Huuuge" },
+    { key: "#26598", status: "Closed", summary: "Play Studio-POP Sweep coins" },
+    { key: "#26468", status: "Closed", summary: "Creative Request: Snowprint - Warhammer 40,000: Tacticus" }
+  ] }
 };
 // Reuniones de hoy desde Google Calendar. Solo título + horario (sin invitados),
 // porque este sitio es público. Se reescribe en cada corrida de la tarea programada.
 const initialMeetings = {
-  generatedAt: "2026-07-21T17:33:00-03:00",
+  generatedAt: "2026-07-23T10:55:23-03:00",
   events: [
-    { time: "10:10 – 10:55", title: "Daily Creatives" }
+    { time: "09:00 – 09:30", title: "CTV Meeting" },
+    { time: "10:00 – 10:45", title: "Daily Creatives" }
   ]
 };
 
