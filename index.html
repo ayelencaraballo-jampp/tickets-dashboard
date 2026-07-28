@@ -141,6 +141,13 @@
   .meeting-time{font-family:var(--mono);font-size:12px;color:var(--text-dim);flex-shrink:0;width:118px;}
   .meeting-title{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .meeting-dot{width:6px;height:6px;border-radius:50%;background:var(--grad1);flex-shrink:0;}
+  .sidebar-meetings{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);}
+  .sidebar-meetings-title{font-size:11px;font-family:var(--mono);color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;padding:0 6px;margin-bottom:10px;}
+  .sidebar-meetings .ticket-list{max-height:none;padding-right:0;}
+  .sidebar-meetings .meeting-row{padding:8px 6px;gap:8px;}
+  .sidebar-meetings .meeting-time{width:auto;font-size:10.5px;}
+  .sidebar-meetings .meeting-title{font-size:12px;white-space:normal;overflow:visible;text-overflow:unset;line-height:1.3;}
+  .sidebar-meetings .empty-row{padding:10px 6px;font-size:11.5px;text-align:left;}
   ::-webkit-scrollbar{width:6px;}
   ::-webkit-scrollbar-thumb{background:var(--panel-2);border-radius:6px;}
   .view{display:none;}
@@ -149,7 +156,7 @@
     .app{flex-direction:column;}
     .sidebar{width:100%;flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--line);}
     nav{flex-direction:row;}
-    .nav-spacer,.nav-bottom{display:none;}
+    .nav-spacer,.nav-bottom,.sidebar-meetings{display:none;}
     .stat-row,.split{grid-template-columns:1fr;}
   }
 
@@ -197,6 +204,10 @@
       <div class="nav-item active" data-view="hoy"><span class="ic">◷</span> Tareas de hoy</div>
       <div class="nav-item" data-view="historial"><span class="ic">◫</span> Tareas anteriores</div>
     </nav>
+    <div class="sidebar-meetings">
+      <div class="sidebar-meetings-title">Reuniones de hoy</div>
+      <div class="ticket-list" id="meetingsList"></div>
+    </div>
     <div class="nav-spacer"></div>
     <div class="nav-bottom">
       <div class="nav-item" style="opacity:.55;cursor:default;"><span class="ic">⚙</span> Ajustes</div>
@@ -261,12 +272,6 @@
             Jampp → Jira (proyecto CO)<br>YouAppi → Mesa de ayuda (help.youappi.com)
           </div>
         </div>
-      </div>
-      <div class="card list-card" style="margin-top:16px;">
-        <div class="card-head">
-          <div class="card-title">Reuniones de hoy</div>
-        </div>
-        <div class="ticket-list" id="meetingsList" style="max-height:260px;"></div>
       </div>
       <div class="video-gallery-viewport">
         <div class="video-gallery-track">
