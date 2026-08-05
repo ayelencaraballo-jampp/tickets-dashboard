@@ -123,7 +123,7 @@
   .status-chip{
     font-size:10.5px;font-family:var(--mono);padding:4px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0;
   }
-  .status-chip.Backlog{background:rgba(157,147,171,0.16);color:var(--backlog);}
+  .status-chip.Backlog,.status-chip.NeedOpsInputs{background:rgba(157,147,171,0.16);color:var(--backlog);}
   .status-chip.WorkingOn{background:rgba(240,201,106,0.16);color:var(--working);}
   .status-chip.Open{background:rgba(240,112,138,0.16);color:var(--open);}
   .status-chip.NeedFeedback{background:rgba(240,201,106,0.16);color:var(--working);}
@@ -578,8 +578,9 @@
 // en cada corrida (cada 2h, 9-19, lun-vie). No usan almacenamiento de navegador:
 // el archivo HTML completo se regenera con los datos nuevos embebidos acá.
 const initialToday = {
-  generatedAt: "2026-08-05T08:59:27-03:00",
+  generatedAt: "2026-08-05T09:22:03-03:00",
   jampp: { tickets: [
+    { key: "CO-4339", status: "Need Ops Inputs", summary: "Random click trigger / Novig", url: "https://jampphq.atlassian.net/browse/CO-4339" },
     { key: "CO-4337", status: "Working On", summary: "Rebet - In banner videos", url: "https://jampphq.atlassian.net/browse/CO-4337" },
     { key: "CO-4336", status: "Working On", summary: "Magnit Tier 1 Proposal", url: "https://jampphq.atlassian.net/browse/CO-4336" },
     { key: "CO-4319", status: "Backlog", summary: "Instacart Tier 1 Creative Proposal", url: "https://jampphq.atlassian.net/browse/CO-4319" }
@@ -638,7 +639,7 @@ const initialHistory = {
 // Reuniones de hoy desde Google Calendar. Solo título + horario (sin invitados),
 // porque este sitio es público. Se reescribe en cada corrida de la tarea programada.
 const initialMeetings = {
-  generatedAt: "2026-08-05T08:59:27-03:00",
+  generatedAt: "2026-08-05T09:22:03-03:00",
   events: [
     { time: "10:00 – 10:45", title: "Daily Creatives" }
   ]
