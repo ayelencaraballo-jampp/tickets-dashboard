@@ -79,6 +79,12 @@
   }
   .sync-pill .dot{width:6px;height:6px;border-radius:50%;background:#5ee6a0;box-shadow:0 0 0 3px rgba(94,230,160,0.18);}
   .stat-row{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-bottom:18px;}
+  .totals-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;}
+  .totals-row .card{padding:14px 18px;}
+  .totals-row .label{font-size:12px;color:var(--text-dim);margin-bottom:4px;}
+  .totals-row .big{font-size:28px;font-weight:700;}
+  .totals-row .big.jampp{color:var(--jampp);}
+  .totals-row .big.youappi{color:var(--youappi);}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;}
   .card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
   .card-title{font-size:14px;font-weight:600;color:var(--text);}
@@ -230,6 +236,20 @@
       </div>
       <div class="top-icons">
         <div class="sync-pill"><span class="dot"></span><span id="lastUpdated">—</span></div>
+      </div>
+    </div>
+    <div class="totals-row">
+      <div class="card">
+        <div class="label">YouAppi · histórico (todos los estados)</div>
+        <div class="big youappi" id="totalYouappi">0</div>
+      </div>
+      <div class="card">
+        <div class="label">Jira · Finalizada + Need Feedback</div>
+        <div class="big jampp" id="totalJira">0</div>
+      </div>
+      <div class="card">
+        <div class="label">Total tickets trabajados</div>
+        <div class="big" id="totalGeneral">0</div>
       </div>
     </div>
     <!-- ===== VISTA: HOY ===== -->
@@ -597,8 +617,14 @@
 // Estos dos objetos son reescritos por la tarea programada "tareas-del-dia-snapshot"
 // en cada corrida (cada 2h, 9-19, lun-vie). No usan almacenamiento de navegador:
 // el archivo HTML completo se regenera con los datos nuevos embebidos acá.
+const ticketTotals = {
+  generatedAt: "2026-10-01T08:57:11-03:00",
+  youappiTotal: 144,
+  jiraFinalizada: 65,
+  jiraNeedFeedback: 20
+};
 const initialToday = {
-  generatedAt: "2026-09-30T15:53:33-03:00",
+  generatedAt: "2026-10-01T08:57:11-03:00",
   jampp: { tickets: [
     { key: "CO-4449", status: "Backlog", summary: "Proposal for Jackpot City - Ontario", url: "https://affle.atlassian.net/browse/CO-4449" }
   ] },
@@ -653,9 +679,9 @@ const initialHistory = {
 // Reuniones de hoy desde Google Calendar. Solo título + horario (sin invitados),
 // porque este sitio es público. Se reescribe en cada corrida de la tarea programada.
 const initialMeetings = {
-  generatedAt: "2026-09-30T15:53:33-03:00",
+  generatedAt: "2026-10-01T08:57:11-03:00",
   events: [
-    { time: "10:15 – 11:00", title: "Daily Creatives" }
+    { time: "10:00 – 10:45", title: "Daily Creatives" }
   ]
 };
 
@@ -724,6 +750,12 @@ function setupFilters(selector, attr, listEl){
   });
 }
 
+function renderTotals(data){
+  document.getElementById("totalYouappi").textContent = data.youappiTotal;
+  document.getElementById("totalJira").textContent = data.jiraFinalizada + data.jiraNeedFeedback;
+  document.getElementById("totalGeneral").textContent = data.youappiTotal + data.jiraFinalizada + data.jiraNeedFeedback;
+}
+
 function renderToday(data){
   renderList(document.getElementById("hoyList"), data.jampp.tickets, data.youappi.tickets, "Sin tickets activos ahora.");
   document.getElementById("jamppHoyN").textContent = data.jampp.tickets.length;
@@ -775,6 +807,7 @@ document.querySelectorAll(".nav-item[data-view]").forEach(item => {
   });
 });
 
+renderTotals(ticketTotals);
 renderToday(initialToday);
 renderMeetings(initialMeetings);
 renderHistory(initialHistory);
