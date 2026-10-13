@@ -424,25 +424,23 @@
 // en cada corrida (cada 2h, 9-19, lun-vie). No usan almacenamiento de navegador:
 // el archivo HTML completo se regenera con los datos nuevos embebidos acá.
 const ticketTotals = {
-  generatedAt: "2026-10-13T12:42:00-03:00",
+  generatedAt: "2026-10-13T14:12:00-03:00",
   youappiTotal: 149,
-  jiraFinalizada: 66,
-  jiraNeedFeedback: 21,
-  jiraTotal: 164
+  jiraFinalizada: 67,
+  jiraNeedFeedback: 22,
+  jiraTotal: 165
 };
 const initialToday = {
-  generatedAt: "2026-10-13T12:42:00-03:00",
+  generatedAt: "2026-10-13T14:12:00-03:00",
   jampp: { tickets: [
+    { key: "CO-4509", status: "Backlog", summary: "Telkomsel 320x50 banners", url: "https://affle.atlassian.net/browse/CO-4509" },
     { key: "CO-4476", status: "Working On", summary: "Payback | Creatives (video & statics)", url: "https://affle.atlassian.net/browse/CO-4476" },
-    { key: "CO-4493", status: "Working On", summary: "Versant Media / Wavemaker Meeting", url: "https://affle.atlassian.net/browse/CO-4493" },
     { key: "CO-4508", status: "In Testing", summary: "Inter - Random EClick ads", url: "https://affle.atlassian.net/browse/CO-4508" }
   ] },
-  youappi: { tickets: [
-    { key: "#26746", status: "Open", summary: "Game Cashouts" }
-  ] }
+  youappi: { tickets: [] }
 };
 const initialHistory = {
-  generatedAt: "2026-10-13T12:42:00-03:00",
+  generatedAt: "2026-10-13T14:12:00-03:00",
   jampp: { tickets: [
     { key: "CO-4173", status: "Finalizada", summary: "Creative Proposal (DPA) - Sportmaster", url: "https://affle.atlassian.net/browse/CO-4173" },
     { key: "CO-4193", status: "Finalizada", summary: "McDonald's AR - World Cup Creatives", url: "https://affle.atlassian.net/browse/CO-4193" },
@@ -490,7 +488,7 @@ const initialHistory = {
 // Reuniones de hoy desde Google Calendar. Solo título + horario (sin invitados),
 // porque este sitio es público. Se reescribe en cada corrida de la tarea programada.
 const initialMeetings = {
-  generatedAt: "2026-10-13T12:42:00-03:00",
+  generatedAt: "2026-10-13T14:12:00-03:00",
   events: [ { time: "10:00 – 10:45", title: "Daily Creatives" } ]
 };
 
@@ -560,9 +558,9 @@ function setupFilters(selector, attr, listEl){
 }
 
 const monthlyTotals = {
-  generatedAt: "2026-10-13T12:42:00-03:00",
+  generatedAt: "2026-10-13T14:12:00-03:00",
   youappi: [["Abr 26",15],["May 26",18],["Jun 26",46],["Jul 26",11],["Ago 26",21],["Sep 26",26],["Oct 26",12]],
-  jampp: [["Mar 26",1],["Abr 26",11],["May 26",18],["Jun 26",21],["Jul 26",35],["Ago 26",40],["Sep 26",31],["Oct 26",7]]
+  jampp: [["Mar 26",1],["Abr 26",11],["May 26",18],["Jun 26",21],["Jul 26",35],["Ago 26",40],["Sep 26",31],["Oct 26",8]]
 };
 function renderMonths(id, arr){
   const el = document.getElementById(id); if(!el) return;
