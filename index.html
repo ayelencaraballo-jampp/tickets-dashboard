@@ -424,16 +424,19 @@
 // en cada corrida (cada 2h, 9-19, lun-vie). No usan almacenamiento de navegador:
 // el archivo HTML completo se regenera con los datos nuevos embebidos acá.
 const ticketTotals = {
-  generatedAt: "2026-10-19T08:45:00-03:00",
+  generatedAt: "2026-10-19T10:08:04-03:00",
   youappiTotal: 154,
   jiraFinalizada: 67,
   jiraNeedFeedback: 26,
   jiraTotal: 164
 };
 const initialToday = {
-  generatedAt: "2026-10-19T08:45:00-03:00",
+  generatedAt: "2026-10-19T10:08:04-03:00",
   jampp: { tickets: [] },
-  youappi: { tickets: [] }
+  youappi: { tickets: [
+    { key: "#26684", status: "Open", summary: "Banner Request: Snowprint - Warhammer 40,000: Tacticus" },
+    { key: "#27100", status: "Open", summary: "T-bank | Creative refresh" }
+  ] }
 };
 const initialHistory = {
   generatedAt: "2026-10-16T11:23:14-03:00",
@@ -484,7 +487,7 @@ const initialHistory = {
 // Reuniones de hoy desde Google Calendar. Solo título + horario (sin invitados),
 // porque este sitio es público. Se reescribe en cada corrida de la tarea programada.
 const initialMeetings = {
-  generatedAt: "2026-10-19T08:45:00-03:00",
+  generatedAt: "2026-10-19T10:08:04-03:00",
   events: [
     { time: "10:00 – 10:45", title: "Daily Creatives" }
   ]
