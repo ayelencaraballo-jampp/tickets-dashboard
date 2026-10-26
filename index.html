@@ -156,6 +156,29 @@ aside{background:transparent;padding:20px 16px;gap:4px}
 .tk .st{align-self:center;margin:0 14px 0 0;border-radius:4px;background:transparent;border:1.5px solid currentColor;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:9.5px;padding:4px 7px;transform:rotate(-3deg);color:var(--paper)}
 .tk .st.fin{color:#7bdc9e}.tk .st.nf{color:#f5a524}.tk .st.it{color:#8fb4ff}
 .vp-chip,.vp-btn,.vp-search{font-family:"Instrument Sans",system-ui,sans-serif}
+
+/*GLASS*/
+:root{--glass:rgba(22,17,40,.52);--glass2:rgba(255,255,255,.05);--line:rgba(255,255,255,.16);--ink:#f6f4ff;--mute:#b4aecb;--title:#d8d3ea}
+html{background:#0a0a1c}
+body{background:
+ url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.5'/></svg>"),
+ radial-gradient(900px 700px at 100% 100%,rgba(205,120,120,.68),rgba(150,70,130,.34) 45%,transparent 70%),
+ radial-gradient(800px 600px at 0% 62%,rgba(52,38,140,.75),transparent 70%),
+ radial-gradient(700px 500px at 100% 0%,rgba(120,50,150,.45),transparent 70%),
+ linear-gradient(160deg,#07071a 0%,#0e0b2e 45%,#120a24 100%);
+ background-attachment:fixed;background-blend-mode:soft-light,normal,normal,normal,normal}
+.shell{background:rgba(10,8,22,.28);border:1px solid var(--line);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.card,.me-card{background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03) 40%,rgba(20,15,40,.45));border:1px solid rgba(255,255,255,.17);-webkit-backdrop-filter:blur(22px) saturate(120%);backdrop-filter:blur(22px) saturate(120%);box-shadow:0 18px 40px -22px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.14)}
+.tk .r{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
+.tk .r::before,.tk .r::after{display:none}
+.tk .stub{background:rgba(160,130,255,.20)}.tk .stub.y{background:rgba(245,165,36,.20)}
+.tk .stub span,.num small,.tl,.sub,.tk .tx small,.me-card small{color:#c3bdd9}
+.meet div{background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.24)}
+.nav{color:#e6e2f5}.nav:hover{background:rgba(255,255,255,.08)}
+.sync{background:rgba(255,255,255,.07)}
+.top h1,.hello h2{text-shadow:0 1px 14px rgba(0,0,0,.45)}
+.vp-card{background:rgba(255,255,255,.07)!important;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.vp-search{background:rgba(255,255,255,.08)}
 </style>
 </head>
 <body data-tab="hoy">
