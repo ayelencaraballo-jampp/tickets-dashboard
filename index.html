@@ -342,7 +342,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(4,2,28,.52);z-ind
 .proj-side{background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:6px 6px 0!important;margin:12px 0 0!important}
 .ps-head b,.ps-head small{text-shadow:0 1px 10px rgba(4,0,50,.7)}
 </style>
-</head>
+<style>/*LOGOS*/.tk .stub.lgo,.tk .stub.lgo.y{width:92px;height:44px;border-radius:12px;background:#fff;box-shadow:0 6px 14px -6px rgba(0,0,0,.6);padding:0 6px}.tk .stub.lgo .lg{width:100%;height:100%;display:block}</style></head>
 <body data-tab="hoy">
 <div class="shell">
   <aside>
@@ -446,16 +446,17 @@ body::before{content:"";position:fixed;inset:0;background:rgba(4,2,28,.52);z-ind
 </div>
 
 <script>
-const ticketTotals = { generatedAt: "2026-10-28T09:30:00-03:00", youappiTotal: 174, jiraFinalizada: 69, jiraNeedFeedback: 26, jiraTotal: 173 };
-const initialToday = { generatedAt: "2026-10-28T09:30:00-03:00",
+const ticketTotals = { generatedAt: "2026-10-28T12:40:00-03:00", youappiTotal: 175, jiraFinalizada: 69, jiraNeedFeedback: 26, jiraTotal: 173 };
+const initialToday = { generatedAt: "2026-10-28T12:40:00-03:00",
   jampp: { tickets: [
     { key: "CO-4528", status: "Working On", summary: "Natura - Video Creation Natura Week", url: "https://affle.atlassian.net/browse/CO-4528" }
   ] },
   youappi: { tickets: [
-    { key: "#27155", status: "Open", summary: "Creative Request - Playdayy - Merge Cooking - 261028" }
+    { key: "#27155", status: "Open", summary: "Creative Request - Playdayy - Merge Cooking - 261028" },
+    { key: "#27153", status: "Open", summary: "Cut Videos - Guru Games - Maze Madness - 261028" }
   ] }
 };
-const initialMeetings = { generatedAt: "2026-10-28T09:30:00-03:00", events: [ { time: "10:00 – 10:45", title: "Daily Creatives" } ] };
+const initialMeetings = { generatedAt: "2026-10-28T12:40:00-03:00", events: [ { time: "10:00 – 10:45", title: "Daily Creatives" } ] };
 const initialHistory = {
   generatedAt: "2026-10-16T11:23:14-03:00",
   jampp: { tickets: [
@@ -599,6 +600,7 @@ ms.addEventListener('change',function(){selM=+ms.value;
   $('mSum').textContent=mFull(months[selM])+' · Jampp '+J[selM]+' · YouAppi '+Y[selM]+' · Total '+(J[selM]+Y[selM]);});
 // ---- hoy ----
 var filt='all';
+var JL='<svg class="lg" viewBox="0 0 92 30" aria-label="Jampp"><text x="46" y="23" text-anchor="middle" font-family="Clash Grotesk,Arial,sans-serif" font-weight="700" font-size="25" letter-spacing="-1" fill="#2b1a8c">jampp</text><circle cx="86" cy="21" r="3" fill="#7c4dff"/></svg>',YL='<svg class="lg" viewBox="0 0 92 30" aria-label="YouAppi"><text x="3" y="21" font-family="Clash Grotesk,Arial,sans-serif" font-weight="700" font-size="15" fill="#1d63f2">YOU</text><rect x="38" y="5" width="51" height="21" rx="4" fill="#ff3d8b"/><text x="63.5" y="21" text-anchor="middle" font-family="Clash Grotesk,Arial,sans-serif" font-weight="700" font-size="14" fill="#fff">APPI</text></svg>';
 function renderToday(){
   var j=(initialToday.jampp.tickets||[]).map(function(t){return {k:t.key,s:t.summary,st:t.status,u:t.url,c:'j'}});
   var y=(initialToday.youappi.tickets||[]).map(function(t){return {k:t.key,s:t.summary,st:t.status,u:'',c:'y'}});
@@ -607,7 +609,7 @@ function renderToday(){
   $('hoyList').innerHTML=list.length?list.map(function(t){
     var tag=t.u?'a':'div';
     var num=String(t.k).replace(/^\D+-?/,'');var sc=/final|done|closed/i.test(t.st)?'fin':/feedback/i.test(t.st)?'nf':/test/i.test(t.st)?'it':'';
-    return '<'+tag+' class="r"'+(t.u?' href="'+esc(t.u)+'" target="_blank" rel="noopener"':'')+'><div class="stub'+(t.c==='y'?' y':'')+'"><b>'+esc(num.replace('#',''))+'</b><span>'+(t.c==='y'?'YOUAPPI':'JAMPP')+'</span></div><div class="tx"><b>'+esc(t.s)+'</b><small>'+esc(t.k)+'</small></div><span class="st '+sc+'">'+esc(t.st)+'</span></'+tag+'>'
+    return '<'+tag+' class="r"'+(t.u?' href="'+esc(t.u)+'" target="_blank" rel="noopener"':'')+'><div class="stub lgo'+(t.c==='y'?' y':'')+'">'+(t.c==='y'?YL:JL)+'</div><div class="tx"><b>'+esc(t.s)+'</b><small>'+esc(t.k)+'</small></div><span class="st '+sc+'">'+esc(t.st)+'</span></'+tag+'>'
     }).join('')
     :'<div class="r" style="cursor:default"><div class="tx"><b>Nothing here</b><small>No tickets for this filter</small></div></div>';
 }
