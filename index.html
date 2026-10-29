@@ -449,66 +449,17 @@ body::before{content:"";position:fixed;inset:0;background:rgba(4,2,28,.52);z-ind
 </div>
 
 <script>
-const ticketTotals = { generatedAt: "2026-10-29T10:30:00-03:00", youappiTotal: 176, jiraFinalizada: 69, jiraNeedFeedback: 26, jiraTotal: 175 };
-const initialToday = { generatedAt: "2026-10-29T10:30:00-03:00",
+const ticketTotals = { generatedAt: "2026-10-29T13:27:36-03:00", youappiTotal: 176, jiraFinalizada: 69, jiraNeedFeedback: 27, jiraTotal: 175 };
+const initialToday = { generatedAt: "2026-10-29T13:27:36-03:00",
   jampp: { tickets: [
-    { key: "CO-4553", status: "Backlog", summary: "Resizes - Betway Spain (Super Group)", url: "https://affle.atlassian.net/browse/CO-4553" },
-    { key: "CO-4551", status: "Working On", summary: "Countdown Ads y DPA para el Black Friday, Sephora", url: "https://affle.atlassian.net/browse/CO-4551" },
+    { key: "CO-4553", status: "Working On", summary: "Resizes - Betway Spain (Super Group)", url: "https://affle.atlassian.net/browse/CO-4553" },
     { key: "CO-4528", status: "Working On", summary: "Natura - Video Creation Natura Week", url: "https://affle.atlassian.net/browse/CO-4528" }
   ] },
-  youappi: { tickets: [
-    { key: "#27166", status: "Open", summary: "Creative Request - IGS - Good Luck 777 - 261029" }
-  ] }
+  youappi: { tickets: [] }
 };
-const initialMeetings = { generatedAt: "2026-10-29T10:30:00-03:00", events: [ { time: "10:10 – 10:55", title: "Daily Creatives" } ] };
-const initialHistory = {
-  generatedAt: "2026-10-16T11:23:14-03:00",
-  jampp: { tickets: [
-    { key: "CO-4173", status: "Finalizada", summary: "Creative Proposal (DPA) - Sportmaster", url: "https://affle.atlassian.net/browse/CO-4173" },
-    { key: "CO-4193", status: "Finalizada", summary: "McDonald's AR - World Cup Creatives", url: "https://affle.atlassian.net/browse/CO-4193" },
-    { key: "CO-4210", status: "Finalizada", summary: "Capcut: Create In-Banner Videos from Static Images", url: "https://affle.atlassian.net/browse/CO-4210" },
-    { key: "CO-4236", status: "Finalizada", summary: "[Capcut] Create In-Banner Videos from Static images", url: "https://affle.atlassian.net/browse/CO-4236" },
-    { key: "CO-4224", status: "Finalizada", summary: "e-Football Creative Resizes", url: "https://affle.atlassian.net/browse/CO-4224" },
-    { key: "CO-4242", status: "Finalizada", summary: "In Banners 320x50 - Magnit", url: "https://affle.atlassian.net/browse/CO-4242" },
-    { key: "CO-4195", status: "Finalizada", summary: "GoPuff -  Creatives CTV para Audiencia Hispana", url: "https://affle.atlassian.net/browse/CO-4195" },
-    { key: "CO-4168", status: "Finalizada", summary: "Telkomsel New launch Resize", url: "https://affle.atlassian.net/browse/CO-4168" },
-    { key: "CO-4183", status: "Finalizada", summary: "Sephora Brasil - Dia dos Namorados Creatives", url: "https://affle.atlassian.net/browse/CO-4183" },
-    { key: "CO-4178", status: "Finalizada", summary: "by.U Creative Resize - 5G [To launch tomorrow if possible]", url: "https://affle.atlassian.net/browse/CO-4178" },
-    { key: "CO-4211", status: "Finalizada", summary: "New In-Banner Video Creatives - Super Group", url: "https://affle.atlassian.net/browse/CO-4211" },
-    { key: "CO-4221", status: "Finalizada", summary: "McDonalds MX | Ads Mundial", url: "https://affle.atlassian.net/browse/CO-4221" },
-    { key: "CO-4214", status: "Finalizada", summary: "McD Video Edits (Launch Tomorrow)", url: "https://affle.atlassian.net/browse/CO-4214" },
-    { key: "CO-4192", status: "Finalizada", summary: "Small banner sized in banner video for Earnifi", url: "https://affle.atlassian.net/browse/CO-4192" },
-    { key: "CO-4134", status: "Finalizada", summary: "GoPuff Adaptar Creatives CTV para Audiencia Hispana", url: "https://affle.atlassian.net/browse/CO-4134" },
-    { key: "CO-4158", status: "Finalizada", summary: "Banner creatives request for CapCut", url: "https://affle.atlassian.net/browse/CO-4158" },
-    { key: "CO-4148", status: "Finalizada", summary: "Olipa Trading Card New launch resize", url: "https://affle.atlassian.net/browse/CO-4148" },
-    { key: "CO-4174", status: "Finalizada", summary: "McDonalds MX - L&F BIG FEST", url: "https://affle.atlassian.net/browse/CO-4174" },
-    { key: "CO-4137", status: "Finalizada", summary: "Native resize request - Betway Sports", url: "https://affle.atlassian.net/browse/CO-4137" },
-    { key: "CO-4167", status: "Finalizada", summary: "McDonalds Mexico - New Creatives x Mes de la Hamburguesa", url: "https://affle.atlassian.net/browse/CO-4167" },
-    { key: "CO-4153", status: "Finalizada", summary: "Sephora Brasil - Miu Miu Creatives", url: "https://affle.atlassian.net/browse/CO-4153" },
-    { key: "CO-4159", status: "Finalizada", summary: "Enjoei - Creative Resize Promo 5/5", url: "https://affle.atlassian.net/browse/CO-4159" },
-    { key: "CO-4139", status: "Finalizada", summary: "McDonalds - Ads Resizing Q2", url: "https://affle.atlassian.net/browse/CO-4139" },
-    { key: "CO-4141", status: "Finalizada", summary: "Resize McDonalds MX - Mundial 2026", url: "https://affle.atlassian.net/browse/CO-4141" },
-    { key: "CO-4154", status: "Finalizada", summary: "WorldWinner Adding CTA Button to Videos", url: "https://affle.atlassian.net/browse/CO-4154" },
-    { key: "CO-4118", status: "Finalizada", summary: "Sephora Brasil - Help with New Creatives", url: "https://affle.atlassian.net/browse/CO-4118" },
-    { key: "CO-4123", status: "Finalizada", summary: "Speak AI small banner resize", url: "https://affle.atlassian.net/browse/CO-4123" },
-    { key: "CO-4133", status: "Finalizada", summary: "Timee Resize Files", url: "https://affle.atlassian.net/browse/CO-4133" }
-  ] },
-  youappi: { tickets: [
-    { key: "#26681", status: "Closed", summary: "SBK- Mraid banner" },
-    { key: "#26684", status: "Closed", summary: "Banner Request: Snowprint - Warhammer 40,000: Tacticus" },
-    { key: "#26619", status: "Closed", summary: "playable for Caesar Casino" },
-    { key: "#26652", status: "Closed", summary: "CTV Creative Request : Chaos Drink sort" },
-    { key: "#26668", status: "Closed", summary: "Re: POPs playable creatives" },
-    { key: "#26645", status: "Closed", summary: "Fwd: Adventure Escape Mysteries | NCIS Story | July 2026" },
-    { key: "#26545", status: "Closed", summary: "CTV Creative Request : Chaos Drink sort" },
-    { key: "#26520", status: "Closed", summary: "Fwd: POPs Sweep coins" },
-    { key: "#26629", status: "Closed", summary: "New banners-Huuuge" },
-    { key: "#26598", status: "Closed", summary: "Play Studio-POP Sweep coins" },
-    { key: "#26468", status: "Closed", summary: "Creative Request: Snowprint - Warhammer 40,000: Tacticus" }
-  ] }
-};
+const initialMeetings = { generatedAt: "2026-10-29T13:27:36-03:00", events: [ { time: "10:10 – 10:55", title: "Daily Creatives" } ] };
 const monthlyTotals = {
-  generatedAt: "2026-10-29T10:30:00-03:00",
+  generatedAt: "2026-10-29T13:27:36-03:00",
   youappi: [["Abr 26",15],["May 26",18],["Jun 26",46],["Jul 26",11],["Ago 26",21],["Sep 26",26],["Oct 26",22]],
   jampp: [["Mar 26",1],["Abr 26",11],["May 26",18],["Jun 26",21],["Jul 26",35],["Ago 26",38],["Sep 26",31],["Oct 26",20]]
 };
