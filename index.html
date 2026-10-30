@@ -341,6 +341,14 @@ body::before{content:"";position:fixed;inset:0;background:rgba(4,2,28,.52);z-ind
 .vp-modal{z-index:1000}
 .proj-side{background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:6px 6px 0!important;margin:12px 0 0!important}
 .ps-head b,.ps-head small{text-shadow:0 1px 10px rgba(4,0,50,.7)}
+.rcol{display:grid;gap:16px;align-content:start}
+.adsbig{display:flex;align-items:center;gap:16px;margin:14px 0 12px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.adsbig b{font-size:52px;line-height:1;font-weight:700;color:var(--title)}
+.adsbig span{font-size:14px;font-weight:600;color:var(--title);line-height:1.35}
+.adsbig small{font-size:12px;font-weight:400;color:var(--mute)}
+.skitem{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);margin-top:8px}
+.skitem strong{font-size:14px;color:var(--title)}
+.skitem p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--text,#d8d3ea)}
 </style>
 <style>/*LOGOS*/.tk .stub.lgo,.tk .stub.lgo.y{width:76px;height:32px;border-radius:9px;background:#fff;box-shadow:0 4px 10px -5px rgba(0,0,0,.6);padding:4px 8px}.tk .stub.lgo .lg{max-width:100%;max-height:100%;object-fit:contain;display:block}</style><style>/*PHONE*/.ph{position:relative;z-index:0;width:84%;margin:10px auto 26px;overflow:visible;aspect-ratio:360/449;filter:drop-shadow(0 14px 18px rgba(8,0,60,.5))}
 .ph video{position:absolute;left:16.33%;top:2.18%;width:53.7%;height:86.2%;object-fit:contain;background:#cfe2f4;border-radius:10px;display:block}
@@ -401,9 +409,17 @@ body::before{content:"";position:fixed;inset:0;background:rgba(4,2,28,.52);z-ind
             <div><h4>YouAppi</h4><div class="chart" id="cYm" style="height:190px"><div class="tl" id="cYmRange"></div><div class="num"><small id="cYmSub"></small><span class="d" id="cYmD"></span><b data-count="0" id="cYmN">0</b></div></div></div>
           </div>
         </div>
-        <div class="card">
-          <h3>Meetings</h3><div class="sub" id="meetSub">Today</div>
-          <div class="meet" id="meetingsList"></div>
+        <div class="rcol">
+          <div class="card" style="--glow:255,140,160">
+            <h3>Meetings</h3><div class="sub" id="meetSub">Today</div>
+            <div class="meet" id="meetingsList"></div>
+          </div>
+          <div class="card skl" style="--glow:245,165,36">
+            <h3>Skills developed</h3><div class="sub">New ads proposed and tools built</div>
+            <div class="adsbig"><b id="adsN" data-count="0">0</b><span>new ads proposed<br><small>across Jampp and YouAppi</small></span></div>
+            <div class="skitem"><strong>Resize</strong><p>Rebuilds one static piece (JPG, PNG, assets or Figma) into all 8 YouAppi sizes, with real fonts and a quality check on each size.</p></div>
+            <div class="skitem"><strong>JPG to video</strong><p>Turns static banners (PNG or JPG) into 6-second animated MP4 videos in several sizes, tracing the original shapes as vectors so they stay sharp.</p></div>
+          </div>
         </div>
       </div>
 
@@ -449,16 +465,14 @@ body::before{content:"";position:fixed;inset:0;background:rgba(4,2,28,.52);z-ind
 </div>
 
 <script>
-const ticketTotals = { generatedAt: "2026-10-30T16:36:09-03:00", youappiTotal: 172, jiraFinalizada: 70, jiraNeedFeedback: 31, jiraTotal: 181, newAdsProposed: 7 };
-const initialToday = { generatedAt: "2026-10-30T16:36:09-03:00",
-  jampp: { tickets: [
-    { key: "CO-4565", status: "Working On", summary: "Yandex Eats_R10 - Inbanner creatives", url: "https://affle.atlassian.net/browse/CO-4565" }
-  ] },
+const ticketTotals = { generatedAt: "2026-10-30T17:38:37-03:00", youappiTotal: 172, jiraFinalizada: 71, jiraNeedFeedback: 30, jiraTotal: 181, newAdsProposed: 7 };
+const initialToday = { generatedAt: "2026-10-30T17:38:37-03:00",
+  jampp: { tickets: [] },
   youappi: { tickets: [] }
 };
-const initialMeetings = { generatedAt: "2026-10-30T16:36:09-03:00", events: [ { time: "10:00 – 10:45", title: "Daily Creatives" } ] };
+const initialMeetings = { generatedAt: "2026-10-30T17:38:37-03:00", events: [ { time: "10:00 – 10:45", title: "Daily Creatives" } ] };
 const monthlyTotals = {
-  generatedAt: "2026-10-30T16:36:09-03:00",
+  generatedAt: "2026-10-30T17:38:37-03:00",
   youappi: [["Abr 26",15],["May 26",18],["Jun 26",38],["Jul 26",11],["Ago 26",21],["Sep 26",27],["Oct 26",23]],
   jampp: [["Mar 26",2],["Abr 26",14],["May 26",17],["Jun 26",18],["Jul 26",34],["Ago 26",38],["Sep 26",31],["Oct 26",27]]
 };
@@ -540,7 +554,7 @@ function numbers(){
   var sumJ=J.reduce(function(a,b){return a+b},0),sumY=Y.reduce(function(a,b){return a+b},0);
   $('cJd').textContent='Need Feedback: '+ticketTotals.jiraNeedFeedback+' · Done: '+ticketTotals.jiraFinalizada;
   $('cYd').textContent='incl. archived';
-  $('cTd').textContent='New ads proposed: '+(ticketTotals.newAdsProposed||0);
+  $('cTd').textContent='';countUp($('adsN'),ticketTotals.newAdsProposed||0);
 }
 
 var ms=$('mSel');
